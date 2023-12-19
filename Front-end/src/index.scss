@@ -1,0 +1,89 @@
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+
+// vars
+$slate-500: #64748b;
+$slate-800: #1e293b;
+$slate-900 :#0f172a;
+$slate-950: #020617;
+$w-240: 240px;
+$w-300: 300px;
+$w-350: 350px;
+$w-400: 400px;
+$h-290px : 290px;
+$spacer: 1rem;
+$enable-negative-margins: true;
+
+
+//  Maps Extending
+$theme-colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "info": $info,
+    "warning": $warning,
+    "danger": $danger,
+    "light": $light,
+    "dark": $dark,
+    "slate-800": $slate-800,
+    "slate-900": $slate-900,
+    "slate-950": $slate-950,
+    "slate-500": $slate-500,
+);
+
+$spacers: (
+    0: 0,
+    1: $spacer * .25,
+    2: $spacer * .5,
+    3: $spacer,
+    4: $spacer * 1.5,
+    5: $spacer * 3,
+    6: $spacer * 4,
+    240px: $w-240,
+    300px: $w-300,
+);
+
+$position-values: (
+    0: 0,
+    50: 50%,
+    100: 100%,
+    n100: -100%
+);
+
+//  Utility Classes Extending 
+@import "../node_modules/bootstrap/scss/variables-dark";
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/utilities";
+
+// width
+$utilities: map-merge($utilities,
+        ("width": map-merge(map-get($utilities, "width"),
+                (values: map-merge(map-get(map-get($utilities, "width"), "values"),
+                        (240px: $w-240,
+                            300px: $w-300,
+                            350px: $w-350,
+                            400px: $w-400,
+                        ),
+                    ), responsive:true,
+                ),
+            ),
+        ));
+
+// height
+$utilities: map-merge($utilities,
+        ("height": map-merge(map-get($utilities, "height"),
+                (values: map-merge(map-get(map-get($utilities, "height"), "values"),
+                        (290px: $h-290px ),
+                    ), responsive:true,
+                ),
+            ),
+        ));
+
+$utilities: map-merge($utilities,
+        ("position": (property: position, responsive: true,
+
+                values: static relative absolute fixed sticky)));
+
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss"
